@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Product {
 
     @Id
-    private Long id;
+    private Integer id;
     @NotBlank
     private String name;
     @NotNull

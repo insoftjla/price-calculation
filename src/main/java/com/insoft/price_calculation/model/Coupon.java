@@ -20,7 +20,7 @@ public class Coupon {
 
     @Id
     private String code;
-    private Integer value;
+    private Long value;
     @Enumerated(EnumType.STRING)
     private CouponType type;
 }

@@ -4,7 +4,7 @@ VALUES ('Iphone', 10000),
        ('Чехол', 1000);
 
 
-INSERT INTO coupon (name, value, type)
+INSERT INTO coupon (code, value, type)
 VALUES ('P10', 10, 'PERCENT'),
        ('P15', 15, 'PERCENT'),
        ('P100', 100, 'PERCENT'),

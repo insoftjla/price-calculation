@@ -1,13 +1,6 @@
-CREATE SEQUENCE product_seq
-    INCREMENT 1
-    START 1
-    MINVALUE 1
-    MAXVALUE 9223372036854775807
-    CACHE 1;
-
 CREATE TABLE product
 (
-    id    bigint PRIMARY KEY DEFAULT nextval(product_seq),
+    id    serial PRIMARY KEY NOT NULL ,
     name  varchar(100) NOT NULL ,
     price bigint NOT NULL
 );

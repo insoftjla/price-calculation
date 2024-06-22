@@ -32,7 +32,7 @@ dependencies {
 
 	// Data source
 	runtimeOnly 'org.postgresql:postgresql'
-	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-core:9.22.3'
 
 	// Other
 	compileOnly 'org.projectlombok:lombok'
