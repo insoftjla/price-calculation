@@ -14,4 +14,9 @@ public class OrderInfo {
     @ValidTaxNumber
     private String taxNumber;
     private String couponCode;
+    @NotNull(groups = {Purchase.class})
+    private String paymentProcessor;
+
+    public interface Purchase {
+    }
 }
