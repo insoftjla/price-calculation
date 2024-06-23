@@ -9,8 +9,11 @@ public class TaxNumberConstraintValidator implements ConstraintValidator<ValidTa
 
     @Override
     public boolean isValid(String taxNumber, ConstraintValidatorContext constraintValidatorContext) {
-        if (taxNumber == null) {
+        if (taxNumber == null || taxNumber.isBlank()) {
             return true;
+        }
+        if (taxNumber.length() < 2) {
+            return false;
         }
 
         var code = taxNumber.substring(0, 2);
