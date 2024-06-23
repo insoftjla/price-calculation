@@ -1,0 +1,26 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: price.calculation
+    hostname: price.calculation
+    environment:
+      DB_URL: jdbc:postgresql://postgres.price.calculation:5432/price_calculation
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - db
+    ports:
+      - 8337:8080
+  db:
+    image: postgres:13-alpine
+    restart: always
+    container_name: postgres.price.calculation
+    hostname: postgres.price.calculation
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: price_calculation
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
