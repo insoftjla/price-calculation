@@ -2,6 +2,7 @@ package com.insoft.price_calculation.service;
 
 import com.insoft.price_calculation.model.Coupon;
 import com.insoft.price_calculation.model.CouponType;
+import com.insoft.price_calculation.model.dto.OrderInfo;
 import com.insoft.price_calculation.repository.CouponRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -27,11 +28,13 @@ public class CouponServiceTest {
     public void givenPriceAndCoupon_whenApplyCoupon_thenPriceEqualsExpectedValue() {
         // given
         var price = 10000L;
+        var info = new OrderInfo();
+        info.setCouponCode("P15");
 
-        when(couponRepository.findById(eq("P15"))).thenReturn(Optional.of(new Coupon("P15", 15, CouponType.PERCENT)));
+        when(couponRepository.findById(eq(info.getCouponCode()))).thenReturn(Optional.of(new Coupon(info.getCouponCode(), 15L, CouponType.PERCENT)));
 
         // when
-        var totalPrice = couponService.apply("P15", price);
+        var totalPrice = couponService.apply(info, price);
 
         // then
         assertEquals(8500, totalPrice);
@@ -43,7 +46,7 @@ public class CouponServiceTest {
         var price = 10000L;
 
         // when
-        var totalPrice = couponService.apply(null, price);
+        var totalPrice = couponService.apply(new OrderInfo(), price);
 
         // then
         assertEquals(10000, totalPrice);

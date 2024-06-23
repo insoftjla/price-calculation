@@ -12,14 +12,12 @@ import org.springframework.stereotype.Service;
 public class ProductPriceCalculationService {
 
     private final ProductRepository productRepository;
-    private final TaxService taxService;
-    private final CouponService couponService;
+    private final DiscountAndTaxesChain discountAndTaxesChain;
 
     public ProductInfo calculatePrice(OrderInfo info) {
         var product = productRepository.findById(info.getProduct()).orElseThrow(() -> new AppException("Product not found"));
 
-        var priceWhitCoupon = couponService.apply(info.getCouponCode(), product.getPrice());
-        var totalPrice = taxService.apply(info.getTaxNumber(), priceWhitCoupon);
+        var totalPrice = discountAndTaxesChain.apply(info, product.getPrice());
 
         return new ProductInfo(product.getName(), totalPrice);
     }
